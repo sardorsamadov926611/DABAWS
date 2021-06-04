@@ -37,6 +37,7 @@
         a.VAL06 as phone_number,
         a.INT02 as experience_work,
         a.VAL02 as specialty,
+
         a.VAL08 as additional_info,
         a.VAL16 as certificate_number,
         a.INT16 as category,
