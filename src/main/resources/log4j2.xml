@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" configDebug="true">
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{yy-MM-dd HH:mm:ss.SSS} [%.6t] %highlight{%level}{FATAL=bg_red, ERROR=bright red, WARN=yellow, INFO=bright green, DEBUG=bright blue} %C{3}.%style{%M(%F:%L)}{bright,yellow} - %msg%n%throwable"/>
+        </Console>
+
+        <Console name="MYBATIS_LOG" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{yy-MM-dd HH:mm:ss.SSS} [%t] %highlight{%level}{FATAL=bg_red, ERROR=bright red, WARN=yellow, INFO=bright green, DEBUG=bright blue} %C{3}.%style{%M(%F:%L)}{bright,yellow} - %msg%n%throwable">
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="rollingFile" fileName="logs/gateway.log" filePattern="logs/sud-%d{yyyyMMdd}-%i.log">
+            <PatternLayout pattern="%d{yy-MM-dd HH:mm:ss.SSS} [%.6t] %level %C{3}.%M(%F:%L) - %msg%n%throwable"/>
+            <SizeBasedTriggeringPolicy size="50 MB"/>
+            <DefaultRolloverStrategy max="12"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+
+        <logger name="uz.daba.gateway" level="DEBUG" additivity="true">
+            <AppenderRef ref="CONSOLE"/>
+        </logger>
+
+        <logger name="org.xhtmlrenderer.pdf" level="DEBUG" additivity="true">
+            <AppenderRef ref="CONSOLE"/>
+        </logger>
+
+        <Root level="WARN">
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+
+        <!-- MyBatis logs -->
+        <logger name="Common.create_custom_product_new" level="DEBUG" additivity="false">
+            <AppenderRef ref="MYBATIS_LOG"/>
+        </logger>
+<!--        <logger name="EcoWRequests" level="DEBUG" additivity="false">-->
+<!--            <AppenderRef ref="MYBATIS_LOG"/>-->
+<!--        </logger>-->
+
+    </Loggers>
+</log4j:configuration>

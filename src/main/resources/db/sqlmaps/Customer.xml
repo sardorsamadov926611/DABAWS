@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="Common">
+
+    <parameterMap id="create_custom_declaration_map" type="map">
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_gtk_id"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_inform_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_request_number"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_request_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_gtk_number"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_declaration_type"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_gtk_mode_number"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_shipper_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_shipper_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_shipper_address"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_receiver_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_receiver_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_receiver_address"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_created_date"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_custom_declaration" parameterMap="create_custom_declaration_map" statementType="CALLABLE">
+        {call pck_queries.create_custom_declaration(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+    <parameterMap id="create_custom_product_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_product_number"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_product_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tnv_code"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_weight"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_amount"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_measure"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_statistical_cost"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_custom_product" parameterMap="create_custom_product_map" statementType="CALLABLE">
+        {call pck_queries.create_custom_product(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+
+    <parameterMap id="create_custom_warehouse_data_map" type="map">
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_id"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_inform_date"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_custom_warehouse_data" parameterMap="create_custom_warehouse_data_map" statementType="CALLABLE">
+        {call pck_queries.create_custom_warehouse_data(?, ?, ?, ?, ?)}
+    </update>
+
+    <parameterMap id="create_custom_warehouse_data_item_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_licen_number"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_receiver_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_type_gtk"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_number_custom"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_post_number"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_date_gtk"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_number_gtk"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tnv_code"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tovar_name"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_static_cost"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_balance_weight"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_flag"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_custom_warehouse_data_item" parameterMap="create_custom_warehouse_data_item_map"
+            statementType="CALLABLE">
+        {call pck_queries.create_custom_warehouse_item(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+</mapper>

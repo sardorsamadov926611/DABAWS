@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="Common">
+    <select id="selectQueryOrgs" parameterType="map" resultType="uz.daba.gateway.beans.UserAuthBean">
+        select
+        a.VAL04 as login,
+        a.VAL09 as password,
+        a.ASTATE as status
+        from tbllists a
+        WHERE 1=1
+        <if test="type_id != null">
+            AND a.TYPE_ID = #{type_id}
+        </if>
+
+        <if test="login != null">
+            and a.VAL04 = #{login}
+        </if>
+        <if test="password != null">
+            and a.VAL09 = #{password}
+        </if>
+    </select>
+
+
+    <select id="selectReceiverInfo" parameterType="map"
+            resultType="uz.daba.gateway.transports.court.ReceiverInfoResult">
+        select
+        a.VAL03 as passport_number,
+        a.INT01 as pnfl,
+        a.NAME as fio,
+        a.DATE02 as birth_date,
+        a.CA_ID as inn,
+        a.OBL_ID as region_id,
+        a.AREA_ID as area_id,
+        a.VAL03 as address,
+        a.DATE03 as passport_given_date,
+        a.VAL04 as passport_given_from,
+        a.VAL06 as phone_number,
+        a.INT02 as experience_work,
+        a.VAL02 as specialty,
+        a.VAL08 as additional_info,
+        a.VAL16 as certificate_number,
+        a.INT16 as category,
+        a.INT17 as certificate_state,
+        a.DATE06 as certificate_given_date,
+        a.DATE07 as certificate_expired_date
+
+        from tbldata a
+        WHERE a.TYPE_ID=210
+        <if test="passport_number != null">
+            AND a.VAL03 = #{passport_number}
+        </if>
+        <if test="pnfl != null">
+            and a.INT01 = #{pnfl}
+        </if>
+        <if test="attestat_number != null">
+            and a.VAL16 = #{attestat_number}
+        </if>
+    </select>
+
+
+    <select id="selectGovInfo" parameterType="map" resultType="uz.daba.gateway.transports.government.GovInfoBean">
+        select
+            a.doc_id                as obj_id,
+            a.tag                as astate,
+            a.int01           as object_type,
+            a.name               as name,
+            a.obl_id                as region_id,
+            a.area_id               as area_id,
+            a.val01            as address,
+            a.val02         as owner,
+            a.ayear           as created_year,
+            a.num01           as total_square,
+            a.num02           as build_square,
+            a.val03          as materials,
+            a.num03        as condition_sum1,
+            a.num04        as condition_sum2,
+            a.int02                 as have1,
+            a.int03                 as have2,
+            a.int04                 as have3,
+            a.int05 as realize_begin_org_inn,
+            a.val04 as position
+
+        from tbldata a
+        WHERE a.update_date <![CDATA[>]]> to_date('${last_updated_date}'
+            ,'yyyy-dd-MM hh24:mi:ss')
+            and a.type_id=520
+            and a.tag in (30,35,40)
+        order by a.update_date
+    </select>
+
+
+    <parameterMap id="insert_bankrup_court_data_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_case_number"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_judge"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_hearin_date"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_court_result"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_court_id"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_definition_date"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_category"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_in_common"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_dept_amount"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_dept_on_budget"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_return_date"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_bankrup_court_data" parameterMap="insert_bankrup_court_data_map" statementType="CALLABLE">
+        {call pck_queries.create_bankrup_court_data(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)}
+    </update>
+
+    <parameterMap id="insert_bankrup_claimant_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_org_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_address"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_region_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_district_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_bank_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_mfo"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_bankrup_claimant" parameterMap="insert_bankrup_claimant_map" statementType="CALLABLE">
+        {call pck_queries.create_bankrup_claimant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)}
+    </update>
+
+
+    <parameterMap id="insert_bankrup_defendant_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_org_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_address"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_region_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_district_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_bank_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_mfo"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_bankrup_defendant" parameterMap="insert_bankrup_defendant_map" statementType="CALLABLE">
+        {call pck_queries.create_bankrup_defendant(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)}
+    </update>
+
+    <parameterMap id="insert_bankrup_representor_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_org_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_address"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_region_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_district_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_bank_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_mfo"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_bankrup_representor" parameterMap="insert_bankrup_representor_map" statementType="CALLABLE">
+        {call pck_queries.create_bankrup_representor(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)}
+    </update>
+
+    <parameterMap id="insert_bankrup_trustee_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_id"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_appoint_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_bankrup_trustee" parameterMap="insert_bankrup_trustee_map" statementType="CALLABLE">
+        {call pck_queries.create_bankrup_trustee(?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+    <parameterMap id="insert_payable_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_payable_type"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_payable_total"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_payable_currency"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_payable_participant"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_payable_in_fovar_participant"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_payable" parameterMap="insert_payable_map" statementType="CALLABLE">
+        {call pck_queries.create_court_payable(?, ?, ?, ?, ?, ?, ?,?,?,?)}
+    </update>
+
+    <parameterMap id="insert_material_requirement_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_claim_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_requirement_type"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_requirement_participant"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_material_requirement" parameterMap="insert_material_requirement_map" statementType="CALLABLE">
+        {call pck_queries.create_court_requirement(?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+    <parameterMap id="insert_court_file_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_obj_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_ext"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_size"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_court_file" parameterMap="insert_court_file_map" statementType="CALLABLE">
+        {call pck_queries.create_court_files(?, ?, ?, ?, ?, ?)}
+    </update>
+
+
+    <parameterMap id="insert_auction_order_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_order_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_auction_order" parameterMap="insert_auction_order_map" statementType="CALLABLE">
+        {call pck_queries.create_auction_order(?, ?, ?, ?)}
+    </update>
+
+
+
+
+</mapper>

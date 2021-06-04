@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="Depository">
+
+    <parameterMap id="insert_depository_content_map" type="map">
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_date"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_depository_content" parameterMap="insert_depository_content_map" statementType="CALLABLE">
+        {call pck_queries.insert_depository_content(?, ?, ?, ?, ?)}
+    </update>
+
+    <parameterMap id="insert_depository_item1_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_n"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tin"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_issr_nm"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_opf"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nopf"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_kfs"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nkfs"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_region"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_capital"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_pval"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_current_stkqty"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_crp_nm"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_opf_vl"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nopf_vl"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_kfs_vl"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nkfs_vl"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_pers"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_volum"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tdy_qty"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_depository_item1" parameterMap="insert_depository_item1_map" statementType="CALLABLE">
+        {call pck_queries.insert_depository_item1(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)}
+    </update>
+
+
+    <parameterMap id="insert_depository_item2_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_n"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tin"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_issr_nm_em"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_opf"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nopf"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_kfs"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nkfs"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_region"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_capital"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_pval"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_stk_qty_em"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_crp_nm"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_opf_vl"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nopf_vl"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_kfs_vl"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nkfs_vl"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_pers_vl"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_volum_vl"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tdy_qty"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_depository_item2" parameterMap="insert_depository_item2_map" statementType="CALLABLE">
+        {call pck_queries.insert_depository_item2(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)}
+    </update>
+
+
+
+    <parameterMap id="insert_depository_item3_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_nn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_crp_nm"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_opf"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nopf"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_kfs"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nkfs"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_pers"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_volume"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tdy_qty"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tin"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_issr_nm"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_opf_pr"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nopf_pr"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_kfs_pr"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nkfs_pr"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nregn_pr"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_volume_pr"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_pval"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_current_stkqty"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_n"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name_"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nkfs_"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nreestr"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_date_"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inn_ooo"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_okpo"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_OOO_soogu"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_oked"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_OOO_mfo"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_telno"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_fax"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_email"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_ncsdp"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_OOO_region"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_adres"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_street"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_uchred"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_gos_pers"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_xzu_pers"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nsoogu"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="insert_depository_item3" parameterMap="insert_depository_item3_map" statementType="CALLABLE">
+        {call pck_queries.insert_depository_item3(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+</mapper>
