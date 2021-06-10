@@ -22,4 +22,13 @@ public interface UriCourt {
 
     String DEPOSITORY  = "depo";
     String DEPOSITORY_SEND_INFO = "/send/info";
+
+    String NALOG  = "soliq";
+    String ORG_DEBT = "/org/debt";
+    String POSTUP = "/postup";
+    String SECTION_TAX = "/section/tax";
+
+    String BIRJA  = "birja";
+    String INFO_PROCUREMENT = "/info/procurement";
+    String INFO_EXCHANGE= "/info/exchange";
 }

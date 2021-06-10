@@ -10,7 +10,7 @@ import uz.daba.gateway.resources.BaseResource;
 
 import javax.ws.rs.ApplicationPath;
 
-//@ApplicationPath("api")
+@ApplicationPath("api")
 public class Application extends ResourceConfig {
 
 

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="Nalog">
+
+
+    <parameterMap id="insert_depository_item1_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id_document"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_send_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_ns10"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_ns11"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_address"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_is_yirik_taxpayer"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tin"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_activity_code"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_payed_taxes"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_nds"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_aksiz"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_dividend"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_others"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_main_debt"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_main_debt_3"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_total_tax_debt"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_penya"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_penya_3"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_payed_divident_1"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_payed_divident_2"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_nalog_org_debt" parameterMap="insert_depository_item1_map" statementType="CALLABLE">
+        {call pck_queries.create_nalog_org_debt(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+    <parameterMap id="create_nalog_postup_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id_document"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_send_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_ns10"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_ns11"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tin"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_sum"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_nalog_postup" parameterMap="create_nalog_postup_map" statementType="CALLABLE">
+        {call pck_queries.create_nalog_postup(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+
+    <parameterMap id="create_nalog_section_tax_map" type="map">
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_id_document"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_send_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name_obj"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_yur_fiz"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_ns10"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_ns11"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_address"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_inno"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_name"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tin"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_pnfl"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_fact_fieldsquare"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_fact_kadastr_fieldsquare"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_fact_buildsquare"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_fact_freebuildsquare"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_amount"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_tasirchan_tax_doc_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_tasirchan_tax_doc_num"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tasirchan_tax_sum"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tasirchan_tax_sum_2x"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tasirchan_tax_sum_5x"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tasirchan_tax_sum_10x"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_tax_debt"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_sud_ariza_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_sud_ariza_num"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_undirish_qaror_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_undirish_qaror_num"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_activated_doc_date"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_activated_doc_num"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_nalog_section_tax" parameterMap="create_nalog_section_tax_map" statementType="CALLABLE">
+        {call pck_queries.create_nalog_section_tax(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                                                   ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+
+</mapper>

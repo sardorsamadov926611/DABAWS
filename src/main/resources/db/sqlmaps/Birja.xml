@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="Nalog">
+
+
+    <parameterMap id="create_birja_info_procurement_map" type="map">
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_type"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_lot_id"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_start_date"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_end_date"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_deal_id"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_deal_date"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_count_orders"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_category_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_product_name"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_amount"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_unit"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_one_price"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_base_price"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_country_id"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_deal_price"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_buyer_name"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_buyer_tin"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_buyer_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_provider_name"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_provider_tin"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_provider_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_founder_fio"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_benefit_fio"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_birja_info_procurement" parameterMap="create_birja_info_procurement_map"
+            statementType="CALLABLE">
+        {call pck_queries.create_birja_info_procurement(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                                                        ?, ?, ?, ?, ?)}
+    </update>
+
+
+    <parameterMap id="create_birja_info_exchange_map" type="map">
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_sellerName"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_sellerInn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_nameCommod"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_unit"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_baseAmount"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_dealAmount"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_avgPrice"/>
+        <parameter jdbcType="DOUBLE" mode="IN" property="p_dealSum"/>
+        <parameter jdbcType="NUMERIC" mode="IN" property="p_period"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
+        <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
+        <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>
+    </parameterMap>
+    <update id="create_birja_info_exchange" parameterMap="create_birja_info_exchange_map" statementType="CALLABLE">
+        {call pck_queries.create_birja_info_exchange(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}
+    </update>
+
+
+</mapper>

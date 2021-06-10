@@ -32,6 +32,8 @@
         <mapper resource="/db/sqlmaps/Common.xml"/>
         <mapper resource="/db/sqlmaps/Depository.xml"/>
         <mapper resource="/db/sqlmaps/Customer.xml"/>
+        <mapper resource="/db/sqlmaps/Nalog.xml"/>
+        <mapper resource="/db/sqlmaps/Birja.xml"/>
 
     </mappers>
 
