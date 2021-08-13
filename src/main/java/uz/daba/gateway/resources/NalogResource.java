@@ -59,7 +59,7 @@ public class NalogResource {
                 result = new BaseNalogResult(1, rb.getString("nalog_success"));
             } catch (CustomException ex) {
                 sqlSession.rollback();
-                return Response.status(-1).entity(result).type(MediaType.APPLICATION_JSON).build();
+                return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
             }
             sqlSession.commit();
             return Utils.toResponse(result);
@@ -67,7 +67,7 @@ public class NalogResource {
         } catch (Exception ex) {
             _logger.error(ex);
             sqlSession.rollback();
-            return Response.status(2).entity(result).type(MediaType.APPLICATION_JSON).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
         } finally {
             sqlSession.close();
         }
@@ -93,7 +93,7 @@ public class NalogResource {
                 result = new BaseNalogResult(1, rb.getString("nalog_success"));
             } catch (CustomException ex) {
                 sqlSession.rollback();
-                return Response.status(-1).entity(result).type(MediaType.APPLICATION_JSON).build();
+                return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
             }
             sqlSession.commit();
             return Utils.toResponse(result);
@@ -101,7 +101,7 @@ public class NalogResource {
         } catch (Exception ex) {
             _logger.error(ex);
             sqlSession.rollback();
-            return Response.status(101).entity(result).type(MediaType.APPLICATION_JSON).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
         } finally {
             sqlSession.close();
         }
@@ -127,7 +127,7 @@ public class NalogResource {
                 result = new BaseNalogResult(1, rb.getString("nalog_success"));
             } catch (CustomException ex) {
                 sqlSession.rollback();
-                return Response.status(-1).entity(result).type(MediaType.APPLICATION_JSON).build();
+                return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
             }
             sqlSession.commit();
             return Utils.toResponse(result);
@@ -135,7 +135,7 @@ public class NalogResource {
         } catch (Exception ex) {
             _logger.error(ex);
             sqlSession.rollback();
-            return Response.status(2).entity(result).type(MediaType.APPLICATION_JSON).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
         } finally {
             sqlSession.close();
         }

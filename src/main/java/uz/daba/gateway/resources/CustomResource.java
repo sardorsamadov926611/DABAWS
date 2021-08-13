@@ -76,7 +76,7 @@ public class CustomResource {
             } catch (CustomException ex) {
                 sqlSession.rollback();
                 result.setResult(new CustomResultItem(entity, rb.getString("error.create_data")));
-                return Response.status(-1).entity(result).type(MediaType.APPLICATION_JSON).build();
+                return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
             }
 
             sqlSession.commit();
@@ -86,7 +86,7 @@ public class CustomResource {
             _logger.error(ex);
             sqlSession.rollback();
             result.setResult(new CustomResultItem(new DeclarationEntity(), rb.getString("error.create_data")));
-            return Response.status(-1).entity(result).type(MediaType.APPLICATION_JSON).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
         } finally {
             sqlSession.close();
         }
@@ -131,7 +131,7 @@ public class CustomResource {
             } catch (CustomException ex) {
                 sqlSession.rollback();
                 result.setResult(new CustomWareHouseResultItem(baseData.getId(), "", rb.getString("error.system")));
-                return Response.status(-1).entity(result).type(MediaType.APPLICATION_JSON).build();
+                return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
             }
 
             sqlSession.commit();
@@ -141,7 +141,7 @@ public class CustomResource {
             _logger.error(ex);
             sqlSession.rollback();
             result.setResult(new CustomWareHouseResultItem(id, "", rb.getString("error.system")));
-            return Response.status(-1).entity(result).type(MediaType.APPLICATION_JSON).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(result).type(MediaType.APPLICATION_JSON).build();
         } finally {
             sqlSession.close();
         }

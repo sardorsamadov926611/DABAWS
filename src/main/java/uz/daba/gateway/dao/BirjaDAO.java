@@ -26,7 +26,7 @@ public class BirjaDAO {
         map.put("p_unit", argument.getUnit());
         map.put("p_one_price", argument.getOne_price());
         map.put("p_base_price", argument.getBase_price());
-        map.put("p_country_id", argument.getCountry_id());
+        map.put("p_country_name", argument.getCountry_name());
         map.put("p_deal_price", argument.getDeal_price());
         map.put("p_buyer_name", argument.getBuyer_name());
         map.put("p_buyer_tin", argument.getBuyer_tin());

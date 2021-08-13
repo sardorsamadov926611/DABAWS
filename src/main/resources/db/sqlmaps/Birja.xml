@@ -17,7 +17,7 @@
         <parameter jdbcType="VARCHAR" mode="IN" property="p_unit"/>
         <parameter jdbcType="DOUBLE" mode="IN" property="p_one_price"/>
         <parameter jdbcType="DOUBLE" mode="IN" property="p_base_price"/>
-        <parameter jdbcType="NUMERIC" mode="IN" property="p_country_id"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_country_name"/>
         <parameter jdbcType="DOUBLE" mode="IN" property="p_deal_price"/>
         <parameter jdbcType="VARCHAR" mode="IN" property="p_buyer_name"/>
         <parameter jdbcType="NUMERIC" mode="IN" property="p_buyer_tin"/>
@@ -40,14 +40,14 @@
 
     <parameterMap id="create_birja_info_exchange_map" type="map">
         <parameter jdbcType="VARCHAR" mode="IN" property="p_sellerName"/>
-        <parameter jdbcType="NUMERIC" mode="IN" property="p_sellerInn"/>
+        <parameter jdbcType="VARCHAR" mode="IN" property="p_sellerInn"/>
         <parameter jdbcType="VARCHAR" mode="IN" property="p_nameCommod"/>
         <parameter jdbcType="VARCHAR" mode="IN" property="p_unit"/>
         <parameter jdbcType="DOUBLE" mode="IN" property="p_baseAmount"/>
         <parameter jdbcType="DOUBLE" mode="IN" property="p_dealAmount"/>
         <parameter jdbcType="DOUBLE" mode="IN" property="p_avgPrice"/>
         <parameter jdbcType="DOUBLE" mode="IN" property="p_dealSum"/>
-        <parameter jdbcType="NUMERIC" mode="IN" property="p_period"/>
+        <parameter jdbcType="DATE" mode="IN" property="p_period"/>
         <parameter jdbcType="NUMERIC" mode="OUT" property="p_new_id"/>
         <parameter jdbcType="NUMERIC" mode="OUT" property="p_result"/>
         <parameter jdbcType="VARCHAR" mode="OUT" property="p_res_msg"/>

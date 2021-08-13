@@ -1,31 +1,35 @@
 package uz.daba.gateway.transports.birja;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import uz.daba.gateway.transports.auction.BaseAuctionArgument;
 
+import java.util.Date;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BExchangeInfoArgument extends BaseAuctionArgument {
 
-    @JsonProperty("SellerName")
+    @JsonProperty("sellerName")
     private String sellerName;
-    @JsonProperty("SellerInn")
-    private Integer sellerInn;
-    @JsonProperty("NameCommod")
+    @JsonProperty("sellerInn")
+    private String sellerInn;
+    @JsonProperty("nameCommod")
     private String nameCommod;
-    @JsonProperty("Unit")
+    @JsonProperty("unit")
     private String unit;
-    @JsonProperty("BaseAmount")
+    @JsonProperty("baseAmount")
     private Double baseAmount;
-    @JsonProperty("DealAmount")
+    @JsonProperty("dealAmount")
     private Double dealAmount;
-    @JsonProperty("AvgPrice")
+    @JsonProperty("avgPrice")
     private Double avgPrice;
-    @JsonProperty("DealSum")
+    @JsonProperty("dealSum")
     private Double dealSum;
-    @JsonProperty("Period")
-    private Integer period;
+    @JsonProperty("period")
+    @JsonFormat(pattern = "dd.MM.yyyy")
+    private Date period;
 
 
     public String getSellerName() {
@@ -36,11 +40,11 @@ public class BExchangeInfoArgument extends BaseAuctionArgument {
         this.sellerName = sellerName;
     }
 
-    public Integer getSellerInn() {
+    public String getSellerInn() {
         return sellerInn;
     }
 
-    public void setSellerInn(Integer sellerInn) {
+    public void setSellerInn(String sellerInn) {
         this.sellerInn = sellerInn;
     }
 
@@ -92,11 +96,11 @@ public class BExchangeInfoArgument extends BaseAuctionArgument {
         this.dealSum = dealSum;
     }
 
-    public Integer getPeriod() {
+    public Date getPeriod() {
         return period;
     }
 
-    public void setPeriod(Integer period) {
+    public void setPeriod(Date period) {
         this.period = period;
     }
 }

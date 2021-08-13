@@ -16,15 +16,15 @@ public class BProcurementInfoArgument extends BaseAuctionArgument {
     @JsonProperty("lot_id")
     private Integer lot_id;
     @JsonProperty("start_date")
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date start_date;
     @JsonProperty("end_date")
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date end_date;
     @JsonProperty("deal_id")
     private Integer deal_id;
     @JsonProperty("deal_date")
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date deal_date;
     @JsonProperty("count_orders")
     private Integer count_orders;
@@ -40,21 +40,21 @@ public class BProcurementInfoArgument extends BaseAuctionArgument {
     private Double one_price;
     @JsonProperty("base_price")
     private Double base_price;
-    @JsonProperty("country_id")
-    private Integer country_id;
+    @JsonProperty("country_name")
+    private String country_name;
     @JsonProperty("deal_price")
     private Double deal_price;
     @JsonProperty("buyer_name")
     private String buyer_name;
     @JsonProperty("buyer_tin")
-    private Integer buyer_tin;
-    @JsonProperty("buyer_id")
+    private String buyer_tin;
+    @JsonProperty("buyer_region_id")
     private Integer buyer_id;
     @JsonProperty("provider_name")
     private String provider_name;
     @JsonProperty("provider_tin")
     private Integer provider_tin;
-    @JsonProperty("provider_id")
+    @JsonProperty("provider_region_id")
     private Integer provider_id;
     @JsonProperty("founder_fio")
     private String founder_fio;
@@ -166,12 +166,12 @@ public class BProcurementInfoArgument extends BaseAuctionArgument {
         this.base_price = base_price;
     }
 
-    public Integer getCountry_id() {
-        return country_id;
+    public String getCountry_name() {
+        return country_name;
     }
 
-    public void setCountry_id(Integer country_id) {
-        this.country_id = country_id;
+    public void setCountry_name(String country_name) {
+        this.country_name = country_name;
     }
 
     public Double getDeal_price() {
@@ -190,11 +190,11 @@ public class BProcurementInfoArgument extends BaseAuctionArgument {
         this.buyer_name = buyer_name;
     }
 
-    public Integer getBuyer_tin() {
+    public String getBuyer_tin() {
         return buyer_tin;
     }
 
-    public void setBuyer_tin(Integer buyer_tin) {
+    public void setBuyer_tin(String buyer_tin) {
         this.buyer_tin = buyer_tin;
     }
 
